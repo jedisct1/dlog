@@ -137,7 +137,7 @@ func log(severity Severity, _message ...interface{}) {
 	now := time.Now()
 	year, month, day := now.Date()
 	hour, minute, second := now.Clock()
-	message := fmt.Sprintf("%v", _message)
+	message := fmt.Sprintf("%s", _message)
 	message = strings.TrimSpace(strings.TrimSuffix(message, "\n"))
 	if len(message) <= 0 {
 		return
