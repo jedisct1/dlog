@@ -146,6 +146,9 @@ func log(severity Severity, _message ...interface{}) {
 	_globals.Lock()
 	os.Stderr.WriteString(line)
 	_globals.Unlock()
+	if severity >= SeverityFatal {
+		os.Exit(255)
+	}
 }
 
 func logf(severity Severity, format string, args ...interface{}) {
