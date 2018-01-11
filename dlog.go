@@ -75,31 +75,31 @@ func Fatalf(format string, args ...interface{}) {
 	logf(SeverityFatal, format, args...)
 }
 
-func Debug(message string) {
+func Debug(message ...interface{}) {
 	log(SeverityDebug, message)
 }
 
-func Info(message string) {
+func Info(message ...interface{}) {
 	log(SeverityInfo, message)
 }
 
-func Notice(message string) {
+func Notice(message ...interface{}) {
 	log(SeverityNotice, message)
 }
 
-func Warn(message string) {
+func Warn(message ...interface{}) {
 	log(SeverityWarning, message)
 }
 
-func Error(message string) {
+func Error(message ...interface{}) {
 	log(SeverityError, message)
 }
 
-func Critical(message string) {
+func Critical(message ...interface{}) {
 	log(SeverityCritical, message)
 }
 
-func Fatal(message string) {
+func Fatal(message ...interface{}) {
 	log(SeverityFatal, message)
 }
 
@@ -130,13 +130,14 @@ func Init(appName string, logLevel Severity) {
 	flag.Var(&_globals.logLevel, "loglevel", fmt.Sprintf("Log level (%d-%d)", SeverityDebug, SeverityFatal))
 }
 
-func log(severity Severity, message string) {
+func log(severity Severity, _message ...interface{}) {
 	if severity < _globals.logLevel.get() {
 		return
 	}
 	now := time.Now()
 	year, month, day := now.Date()
 	hour, minute, second := now.Clock()
+	message := fmt.Sprintf("%v", _message)
 	message = strings.TrimSpace(strings.TrimSuffix(message, "\n"))
 	if len(message) <= 0 {
 		return
