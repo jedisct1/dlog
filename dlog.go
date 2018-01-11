@@ -75,31 +75,31 @@ func Fatalf(format string, args ...interface{}) {
 	logf(SeverityFatal, format, args...)
 }
 
-func Debug(message ...interface{}) {
+func Debug(message interface{}) {
 	log(SeverityDebug, message)
 }
 
-func Info(message ...interface{}) {
+func Info(message interface{}) {
 	log(SeverityInfo, message)
 }
 
-func Notice(message ...interface{}) {
+func Notice(message interface{}) {
 	log(SeverityNotice, message)
 }
 
-func Warn(message ...interface{}) {
+func Warn(message interface{}) {
 	log(SeverityWarning, message)
 }
 
-func Error(message ...interface{}) {
+func Error(message interface{}) {
 	log(SeverityError, message)
 }
 
-func Critical(message ...interface{}) {
+func Critical(message interface{}) {
 	log(SeverityCritical, message)
 }
 
-func Fatal(message ...interface{}) {
+func Fatal(message interface{}) {
 	log(SeverityFatal, message)
 }
 
@@ -130,14 +130,14 @@ func Init(appName string, logLevel Severity) {
 	flag.Var(&_globals.logLevel, "loglevel", fmt.Sprintf("Log level (%d-%d)", SeverityDebug, SeverityFatal))
 }
 
-func log(severity Severity, _message ...interface{}) {
+func logf(severity Severity, format string, args ...interface{}) {
 	if severity < _globals.logLevel.get() {
 		return
 	}
 	now := time.Now()
 	year, month, day := now.Date()
 	hour, minute, second := now.Clock()
-	message := fmt.Sprintf("%s", _message)
+	message := fmt.Sprintf(format, args...)
 	message = strings.TrimSpace(strings.TrimSuffix(message, "\n"))
 	if len(message) <= 0 {
 		return
@@ -151,6 +151,6 @@ func log(severity Severity, _message ...interface{}) {
 	}
 }
 
-func logf(severity Severity, format string, args ...interface{}) {
-	log(severity, fmt.Sprintf(format, args))
+func log(severity Severity, args interface{}) {
+	logf(severity, "%v", args)
 }
