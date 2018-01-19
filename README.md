@@ -4,7 +4,7 @@
 
 Go's standard logger is fairly limited. As result, kazilion alternatives loggers have been written.
 
-All of these are wonderful. They can make your logs look colorful and pretty, buffer things in complicated ways, format them for ElasticSearch, and more.
+All of these are wonderful. They can make your logs look colorful and pretty, buffer things in complicated ways, format data for ElasticSearch, and more.
 
 Cool, but all I wanted is something super dumb, that just exposes `log.Info()`, `log.Error()` and a couple other standard levels.
 
