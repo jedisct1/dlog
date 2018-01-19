@@ -175,7 +175,7 @@ func logf(severity Severity, format string, args ...interface{}) {
 	_globals.Lock()
 	defer _globals.Unlock()
 	if *_globals.useSyslog && _globals.systemLogger == nil {
-		systemLogger, err := NewSystemLogger(_globals.appName, _globals.syslogFacility)
+		systemLogger, err := newSystemLogger(_globals.appName, _globals.syslogFacility)
 		if err != nil {
 			panic(err)
 		}
@@ -189,7 +189,7 @@ func logf(severity Severity, format string, args ...interface{}) {
 		_globals.outFd = outFd
 	}
 	if _globals.systemLogger != nil {
-		(*_globals.systemLogger).WriteString(severity, message)
+		(*_globals.systemLogger).writeString(severity, message)
 	} else {
 		line := fmt.Sprintf("[%d-%02d-%02d %02d:%02d:%02d] [%s] %s\n", year, int(month), day, hour, minute, second, SeverityName[severity], message)
 		if _globals.outFd != nil {

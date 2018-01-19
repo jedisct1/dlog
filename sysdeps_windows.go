@@ -6,7 +6,7 @@ type systemLogger struct {
 	inner *eventlog.Log
 }
 
-func NewSystemLogger(appName string, facility string) (*systemLogger, error) {
+func newSystemLogger(appName string, facility string) (*systemLogger, error) {
 	err := eventlog.InstallAsEventCreate(appName, eventlog.Error|eventlog.Warning|eventlog.Info)
 	if err != nil {
 		return nil, err
@@ -18,7 +18,7 @@ func NewSystemLogger(appName string, facility string) (*systemLogger, error) {
 	return &systemLogger{inner: eventLogger}, nil
 }
 
-func (systemLogger *systemLogger) WriteString(severity Severity, message string) {
+func (systemLogger *systemLogger) writeString(severity Severity, message string) {
 	switch severity {
 	case SeverityError:
 	case SeverityCritical:

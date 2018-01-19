@@ -20,7 +20,7 @@ type systemLogger struct {
 	inner *gsyslog.Syslogger
 }
 
-func NewSystemLogger(appName string, facility string) (*systemLogger, error) {
+func newSystemLogger(appName string, facility string) (*systemLogger, error) {
 	eventLogger, err := gsyslog.NewLogger(gsyslog.LOG_INFO, facility, appName)
 	if err != nil {
 		return nil, err
@@ -28,6 +28,6 @@ func NewSystemLogger(appName string, facility string) (*systemLogger, error) {
 	return &systemLogger{inner: &eventLogger}, nil
 }
 
-func (systemLogger *systemLogger) WriteString(severity Severity, message string) {
+func (systemLogger *systemLogger) writeString(severity Severity, message string) {
 	(*systemLogger.inner).WriteLevel(severityToSyslogPriority[severity], []byte(message))
 }
