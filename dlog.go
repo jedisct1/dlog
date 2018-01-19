@@ -145,19 +145,28 @@ func Init(appName string, logLevel Severity, syslogFacility string) error {
 }
 
 func LogLevel() Severity {
-	return _globals.logLevel.get()
+	_globals.Lock()
+	logLevel := _globals.logLevel.get()
+	_globals.Unlock()
+	return logLevel
 }
 
 func SetLogLevel(logLevel Severity) {
+	_globals.Lock()
 	_globals.logLevel.set(logLevel)
+	_globals.Unlock()
 }
 
 func UseSyslog(value bool) {
+	_globals.Lock()
 	_globals.useSyslog = &value
+	_globals.Unlock()
 }
 
 func UseLogFile(fileName string) {
+	_globals.Lock()
 	_globals.fileName = &fileName
+	_globals.Unlock()
 }
 
 func logf(severity Severity, format string, args ...interface{}) {
