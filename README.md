@@ -1,3 +1,5 @@
+[![](https://godoc.org/github.com/jedisct1/dlog?status.svg)](https://godoc.org/github.com/jedisct1/dlog)
+
 # dlog
 
 Go's standard logger is fairly limited. As result, kazilion alternatives loggers have been written.
