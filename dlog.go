@@ -186,9 +186,10 @@ func logf(severity Severity, format string, args ...interface{}) {
 	if *_globals.useSyslog && _globals.systemLogger == nil {
 		systemLogger, err := newSystemLogger(_globals.appName, _globals.syslogFacility)
 		if err != nil {
-			panic(err)
+			dlog.Critf("Unable to log using the system logger: %s", err)
+		} else {
+			_globals.systemLogger = systemLogger
 		}
-		_globals.systemLogger = systemLogger
 	}
 	if _globals.fileName != nil && len(*_globals.fileName) > 0 && _globals.outFd == nil {
 		outFd, err := os.OpenFile(*_globals.fileName, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0644)
