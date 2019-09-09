@@ -1,0 +1,6 @@
+# github.com/hashicorp/go-syslog v1.0.0
+github.com/hashicorp/go-syslog
+# golang.org/x/sys v0.0.0-20190909082730-f460065e899a
+golang.org/x/sys/windows
+golang.org/x/sys/windows/registry
+golang.org/x/sys/windows/svc/eventlog
