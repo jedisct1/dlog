@@ -202,9 +202,11 @@ func SetFileDescriptor(fd *os.File) {
 
 func createFileDescriptor() {
 	if _globals.fileName != nil && len(*_globals.fileName) > 0 && _globals.outFd == nil {
-		mode := os.O_WRONLY | os.O_APPEND | os.O_CREATE
+		mode := os.O_WRONLY | os.O_CREATE
 		if _globals.truncateLogFile != nil && *_globals.truncateLogFile {
 			mode |= os.O_TRUNC
+		} else {
+			mode |= os.O_APPEND
 		}
 		outFd, err := os.OpenFile(*_globals.fileName, mode, 0644)
 		if err == nil {
