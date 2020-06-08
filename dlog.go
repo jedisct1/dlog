@@ -152,7 +152,7 @@ func Init(appName string, logLevel Severity, syslogFacility string) error {
 	_globals.syslogFacility = syslogFacility
 	_globals.useSyslog = flag.Bool("syslog", false, "Send application logs to the local system logger (Eventlog on Windows, syslog on Unix)")
 	_globals.fileName = flag.String("logfile", "", "Write application logs to file")
-	_globals.truncateLogFile = flag.Bool("logfile-truncate", false, "Truncate the application log file; keep only data from the most recent application launch.")
+	_globals.truncateLogFile = flag.Bool("logfile-truncate", false, "Truncate the application log file; keep only data from the most recent application launch")
 	flag.Var(&_globals.logLevel, "loglevel", fmt.Sprintf("Application log level (%d-%d)", SeverityDebug, SeverityFatal))
 	return nil
 }
