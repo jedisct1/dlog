@@ -1,9 +1,0 @@
-# github.com/hashicorp/go-syslog v1.0.0
-## explicit
-github.com/hashicorp/go-syslog
-# golang.org/x/sys v0.0.0-20201130171929-760e229fe7c5
-## explicit
-golang.org/x/sys/internal/unsafeheader
-golang.org/x/sys/windows
-golang.org/x/sys/windows/registry
-golang.org/x/sys/windows/svc/eventlog
